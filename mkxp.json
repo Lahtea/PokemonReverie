@@ -97,7 +97,7 @@
   // This option may be force-disabled at build time.
   // (0 = disabled)
   //
-  // "fixedFramerate": 0,
+  "fixedFramerate": 0,
 
 
   // Skip (don't draw) frames when behind.
@@ -105,7 +105,7 @@
   // default value when the game starts.
   // (default: disabled)
   //
-  "frameSkip": true,
+  "frameSkip": false,
 
 
   // Use a fixed framerate that is approx. equal to the
@@ -362,7 +362,7 @@
   // "Game.rgssad", but specifying the executable name here
   // is a tiny bit less intrusive.
   //
-  "execName": "Your Game Name Here",
+  "execName": "Project Chasm",
 
   // Whether to force the game into debug mode and whether to compile the game.
   // Useful on JoiPlay and other emulators that can't natively
