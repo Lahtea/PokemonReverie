@@ -97,7 +97,7 @@
   // This option may be force-disabled at build time.
   // (0 = disabled)
   //
-  // "fixedFramerate": 0,
+  "fixedFramerate": 0,
 
 
   // Skip (don't draw) frames when behind.
@@ -105,7 +105,7 @@
   // default value when the game starts.
   // (default: disabled)
   //
-  "frameSkip": true,
+  "frameSkip": false,
 
 
   // Use a fixed framerate that is approx. equal to the
