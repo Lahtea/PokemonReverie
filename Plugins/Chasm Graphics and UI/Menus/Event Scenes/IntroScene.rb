@@ -3,7 +3,7 @@ class IntroEventScene < EventScene
   # Splash screen images that appear for a few seconds and then disappear.
   SPLASH_IMAGES         = ['splash1']
   # The main title screen background image.
-  TITLE_BG_IMAGE        = 'tectonic_regigigas_title'
+  TITLE_BG_IMAGE        = 'title'
   TITLE_START_IMAGE     = 'start'
   TITLE_START_IMAGE_X   = 0
   TITLE_START_IMAGE_Y   = 322
@@ -62,22 +62,6 @@ class IntroEventScene < EventScene
     @pic2.moveOpacity(0, FADE_TICKS, 255)
 	  addLabel(0,220,Graphics.width,"<c3=FFFFFFFF,000000FF><ac><outln2>Version #{Settings::GAME_VERSION}</outln2></ac></c3>")
 
-    if Settings::DISPLAY_VERSION_STATUS
-      activeVersionLabel = ""
-      mostRecentVersion = loadMostRecentVersionNumber
-      if mostRecentVersion.nil?
-        activeVersionLabel = _INTL("Version Server Error")
-      else
-        versionComparison = PluginManager.compare_versions(mostRecentVersion,Settings::GAME_VERSION)
-        if versionComparison > 0
-          activeVersionLabel = _INTL("OUT OF DATE")
-        elsif versionComparison < 0
-          activeVersionLabel = _INTL("AHEAD OF LIVE")
-        end
-      end
-      addLabel(0,260,Graphics.width,"<c3=FF2211FF,DDEEEEFF><ac><outln2>#{activeVersionLabel}</outln2></ac></c3>")
-    end
-
     pictureWait
     onUpdate.set(method(:title_screen_update))    # called every frame
     onCTrigger.set(method(:close_title_screen))   # called when C key is pressed
@@ -87,7 +71,7 @@ class IntroEventScene < EventScene
     onUpdate.clear
     onCTrigger.clear
     # Play random cry
-    Pokemon.play_cry(:REGIGIGAS)
+    Pokemon.play_cry(:ARCEUS)
     @pic.moveXY(0, 20, 0, 0)   # Adds 20 ticks (1 second) pause
     pictureWait
     # Fade out

@@ -1143,7 +1143,7 @@ if facewindowL
           facewindowL=FaceWindowVXNew.new(param)
           facewindowL.windowskin=nil
           facewindowL.x=8
-          facewindowL.y=50-32  #changes in Y position. Adjust accordingly
+          facewindowL.y=54-32  #changes in Y position. Adjust accordingly
           facewindowL.viewport=msgwindow.viewport
           facewindowL.z=msgwindow.z
         when "mr" # Mug Shot (Right)
@@ -1151,7 +1151,7 @@ if facewindowL
           facewindowR=FaceWindowVXNew.new(param)
           facewindowR.windowskin=nil
           facewindowR.x=320
-          facewindowR.y=50-32  #changes in Y position. Adjust accordingly
+          facewindowR.y=54-32  #changes in Y position. Adjust accordingly
           facewindowR.viewport=msgwindow.viewport
           facewindowR.z=msgwindow.z
         when "mc" # Mug Shot (Center)
@@ -1159,14 +1159,14 @@ if facewindowL
           facewindowR=FaceWindowVXNew.new(param)
           facewindowR.windowskin=nil
           facewindowR.x=152
-          facewindowR.y=50-32  #changes in Y position. Adjust accordingly
+          facewindowR.y=54-32  #changes in Y position. Adjust accordingly
           facewindowR.viewport=msgwindow.viewport
           facewindowR.z=msgwindow.z
         when "ff"
           facewindow.dispose if facewindow
           facewindow = FaceWindowVX.new(param)
           facewindow.x=320
-          facewindow.y=50-32  #changes in Y position. Adjust accordingly
+          facewindow.y=54-32  #changes in Y position. Adjust accordingly
 #==================GELA FACE4=======================
 
 
