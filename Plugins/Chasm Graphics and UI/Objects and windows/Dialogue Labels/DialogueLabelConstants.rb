@@ -57,3 +57,5 @@ PEARCE = _INTL("Pearce")
 CALYREX = _INTL("High King Calyrex")
 APOLLYON = _INTL("Apollyon")
 SNOW_WHIP = _INTL("Snow Whip")
+
+AMA = _INTL("Ama")
