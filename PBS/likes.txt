@@ -297,3 +297,7 @@ WATERFALLS,Waterfalls
 WHITENOISE,White Noise
 CALMMUSIC,Calm Music
 MASSAGECHAIRS,Massage Chairs
+AMA,Ama
+GIRRA,Girra
+PALCIUS,Palcius
+DIANTHA,Diantha
