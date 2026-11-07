@@ -1,3 +1,7 @@
-﻿Name      = Dialogue Portraits
-Requires  = Chasm Modding Base
-Credits   = AenaonDogsky, Mr. Gela
+Name         = Dialogue Portraits
+Version      = 1.0.0
+Requires     = Chasm Graphics and UI
+Requires     = Chasm Game Processing
+Requires     = Chasm Battle
+Scripts      = Portraits.rb,Commands.rb,MessageHooks.rb,Cleanup.rb
+Credits      = Beta. Inspired from Mr. Gela's (animated) Portraits and Name Windows scripts and rainefallPortraits, no code from these project was actually used only the idea itself.
