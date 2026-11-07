@@ -120,6 +120,17 @@ module DialoguePortraits
         end
     end
 
+    # Choice, number and text-entry boxes sit on top of the message box, in the
+    # same strip as the speaker name tag. If one would overlap the tag, stack it.
+    module ChoiceBoxHook
+        private
+
+        def pbPositionNearMsgWindow(cmdwindow, msgwindow, side)
+            super
+            DialoguePortraits.stack_above_name_tag(cmdwindow, msgwindow)
+        end
+    end
+
     module GraphicsHook
         def update
             begin
@@ -136,5 +147,6 @@ module DialoguePortraits
 end
 
 Object.prepend(DialoguePortraits::MessageDisplayHook)
+Object.prepend(DialoguePortraits::ChoiceBoxHook)
 Window_AdvancedTextPokemon.prepend(DialoguePortraits::MessageWindowHook)
 Graphics.singleton_class.prepend(DialoguePortraits::GraphicsHook)

@@ -361,6 +361,38 @@ module DialoguePortraits
         tag.visible = true
     end
 
+    #---------------------------------------------------------------------------
+    # Choice boxes: keep them clear of the speaker name tag
+    #---------------------------------------------------------------------------
+    def stackable_box?(window)
+        return true if window.is_a?(Window_DrawableCommand)
+        return true if window.is_a?(Window_InputNumberPokemon)
+        return true if defined?(Window_TextEntry) && window.is_a?(Window_TextEntry)
+        return false
+    end
+
+    def windows_overlap?(a, b)
+        return false if a.x >= b.x + b.width  || b.x >= a.x + a.width
+        return false if a.y >= b.y + b.height || b.y >= a.y + a.height
+        return true
+    end
+
+    def stack_above_name_tag(box, msgwindow)
+        return unless box && !box.disposed? && stackable_box?(box)
+        tag = $SpeakerNameWindow
+        return unless tag && !tag.disposed? && tag.visible
+        return if box.equal?(tag)
+        # Instant (not letter-by-letter) messages end before the frame update that
+        # moves the tag beside the portrait, so make sure it's in place first
+        place_name_tag(msgwindow) if msgwindow && !@suspended && anchor_side
+        return unless windows_overlap?(box, tag)
+        if tag.y - box.height >= 0
+            box.y = tag.y - box.height
+        else
+            box.z = [box.z, tag.z + 1].max # No room above: cover the tag instead
+        end
+    end
+
     def fit_width(tag)
         text = tag.text.to_s
         @tagFitWidths[text] ||= begin
