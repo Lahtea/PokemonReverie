@@ -1,3 +1,0 @@
-﻿Name      = Chasm Speedup
-Requires  = Chasm Modding Base
-Credits   = Riptidecord
