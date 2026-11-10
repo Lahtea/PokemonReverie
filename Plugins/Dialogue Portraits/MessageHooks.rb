@@ -121,7 +121,8 @@ module DialoguePortraits
     end
 
     # Choice, number and text-entry boxes sit on top of the message box, in the
-    # same strip as the speaker name tag. If one would overlap the tag, stack it.
+    # same strip as the speaker name tag. If one would overlap the tag, stack it
+    # above the tag instead. If there isn't room above, draw it in front of the tag.
     module ChoiceBoxHook
         private
 
@@ -131,17 +132,13 @@ module DialoguePortraits
         end
     end
 
-    module GraphicsHook
-        def update
-            begin
-                DialoguePortraits.frame_update
-            rescue StandardError => e
-                unless @dialoguePortraitsErrorShown
-                    @dialoguePortraitsErrorShown = true
-                    echoln("Dialogue Portraits error: #{e.class}: #{e.message}\n#{e.backtrace.first(5).join("\n")}")
-                end
-            end
-            super
+    # Runs once per Graphics.update. Errors are logged once instead of crashing.
+    def self.safe_frame_update
+        frame_update
+    rescue StandardError => e
+        unless @frameErrorShown
+            @frameErrorShown = true
+            echoln("Dialogue Portraits error: #{e.class}: #{e.message}\n#{e.backtrace.first(5).join("\n")}")
         end
     end
 end
@@ -149,4 +146,15 @@ end
 Object.prepend(DialoguePortraits::MessageDisplayHook)
 Object.prepend(DialoguePortraits::ChoiceBoxHook)
 Window_AdvancedTextPokemon.prepend(DialoguePortraits::MessageWindowHook)
-Graphics.singleton_class.prepend(DialoguePortraits::GraphicsHook)
+
+# Graphics.update is now hooked with alias, not prepend. otherwise it will loop and crash becouse Chasm Speedup uses alias instead of prepend 
+class << Graphics
+    unless method_defined?(:dialogue_portraits_update)
+        alias dialogue_portraits_update update
+
+        def update
+            DialoguePortraits.safe_frame_update
+            dialogue_portraits_update
+        end
+    end
+end
